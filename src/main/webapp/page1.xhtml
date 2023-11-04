@@ -1,0 +1,170 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns = "http://www.w3.org/1999/xhtml"
+      xmlns:h = "http://java.sun.com/jsf/html"
+      xmlns:f = "http://java.sun.com/jsf/core"
+      xmlns:ui = "http://java.sun.com/jsf/facelets">
+
+<h:body>
+
+    <h2>This is Page1</h2>
+    <p>inputText</p>
+    <h:inputText value = "Hello World!" style="width: 100px; height: 20px"/>
+    <p>password(inputSecret)</p>
+    <h:inputSecret value = "password" />
+    <p>inputTextarea</p>
+    <h:inputTextarea row = "10" col = "10" value = "Hello World!
+   Everything is fine!" readonly = "true"/>
+    <p>select boolean checkbox</p>
+    <h:selectBooleanCheckbox value = "Remember Me" id = "chkRememberMe" />
+    <h:form>
+    <h3>Mutiple checkboxes</h3>
+    <h:selectManyCheckbox value = "#{userData.data}">
+        <f:selectItem itemValue = "1" itemLabel = "Item 1" />
+        <f:selectItem itemValue = "2" itemLabel = "Item 2" />
+        <f:selectItem itemValue = "3" itemLabel = "Item 3" />
+        <f:selectItem itemValue = "4" itemLabel = "Item 4" />
+        <f:selectItem itemValue = "5" itemLabel = "Item 5" />
+    </h:selectManyCheckbox>
+    <h:commandButton  action = "result" value = "Submit" />
+    </h:form>
+    <p>selectOneRadio</p>
+    <h:selectOneRadio value = "#{userData.data}">
+        <f:selectItem itemValue = "1" itemLabel = "Item 1" />
+        <f:selectItem itemValue = "2" itemLabel = "Item 2" />
+    </h:selectOneRadio>
+    <p>select one list box</p>
+    <h:selectOneListbox value = "#{userData.data}">
+        <f:selectItem itemValue = "1" itemLabel = "Item 1" />
+        <f:selectItem itemValue = "2" itemLabel = "Item 2" />
+    </h:selectOneListbox>
+    <h:form>
+        <h3>List Box</h3>
+        <h:selectManyListbox value = "#{userData.data}">
+            <f:selectItem itemValue = "1" itemLabel = "Item 1" />
+            <f:selectItem itemValue = "2" itemLabel = "Item 2" />
+            <f:selectItem itemValue = "3" itemLabel = "Item 3" />
+            <f:selectItem itemValue = "4" itemLabel = "Item 4" />
+            <f:selectItem itemValue = "5" itemLabel = "Item 5" />
+        </h:selectManyListbox>
+        <h:commandButton value = "Submit" action = "result" />
+    </h:form>
+
+    <h:form>
+        <h3>Combo Box</h3>
+        <h:selectOneMenu value = "#{userData.data}">
+            <f:selectItem itemValue = "1" itemLabel = "Item 1" />
+            <f:selectItem itemValue = "2" itemLabel = "Item 2" />
+            <f:selectItem itemValue = "3" itemLabel = "Item 3" />
+            <f:selectItem itemValue = "4" itemLabel = "Item 4" />
+            <f:selectItem itemValue = "5" itemLabel = "Item 5" />
+        </h:selectOneMenu>
+        <h:commandButton value = "Submit" action = "result" />
+    </h:form>
+
+    <h:form>
+        <h3>Text</h3>
+        <h:outputText value = "Hello World"/>
+        <h3>Text (output format)</h3>
+        <h:outputFormat value = "parameter 1 : {0}, parameter 2 : {1}" >
+            <f:param value = "Item 1" />
+            <f:param value = "Item 2" />
+        </h:outputFormat>
+        <h3>Image</h3>
+        <h:graphicImage value = "../resources/assets/sign.jpg"/>
+    </h:form>
+    <h3>commandButton</h3>
+    <h:form>
+        <h:commandButton value = "Click Me!" onclick = "alert('Hello World!');" />
+    </h:form>
+    <h3>Link</h3>
+    <h:form>
+        <h:link value = "Page 2" outcome = "page2" />
+    </h:form>
+    <h:form>
+        <h3>Command link</h3>
+        <h:commandLink value = "home" action = "home" />
+    </h:form>
+    <h:form>
+        <h3>output link</h3>
+        <h:outputLink value = "google.com" >page1</h:outputLink>
+    </h:form>
+
+    <h:panelGrid id = "panel" columns = "2" border = "1"
+                 cellpadding = "10" cellspacing = "1">
+
+        <f:facet name = "header">
+            <h:outputText value = "Login"/>
+        </f:facet>
+        <h:outputLabel value = "Username" />
+        <h:inputText  />
+        <h:outputLabel value = "Password" />
+        <h:inputSecret />
+
+        <f:facet name = "footer">
+            <h:panelGroup style = "display:block; text-align:center">
+                <h:commandButton id = "submit" value = "Submit" />
+            </h:panelGroup>
+        </f:facet>
+    </h:panelGrid>
+
+    <h:inputText  id = "username"  size = "20" label = "UserName" required = "true">
+        <f:validateLength for = "username" minimum = "5" maximum = "20" />
+    </h:inputText>
+    <h:message for = "username" style = "color:red" />
+
+    <h:form>
+        <h:panelGrid id = "panel" columns = "2" border = "0" cellpadding = "10"
+                     cellspacing = "1">
+            <h:outputLabel value = "Enter Username" />
+
+            <h:inputText  id = "username"  size = "20" label = "UserName"
+                          required = "true">
+                <f:validateLength for = "username" minimum = "5" maximum = "20" />
+            </h:inputText>
+            <h:outputLabel value = "Enter Password" />
+
+            <h:inputSecret id = "password" size = "20" label = "Password"
+                           required = "true" redisplay = "true" >
+                <f:validateLength for = "password" minimum = "5" maximum = "10" />
+            </h:inputSecret>
+            <h:commandButton id = "submit" value = "Submit" action = "result"/>
+        </h:panelGrid>
+        <h:messages style = "color:red;margin:8px;" />
+    </h:form>
+    <h:form>
+        <h:outputFormat value = "Hello {0}!.">
+            <f:param value = "World" />
+        </h:outputFormat>
+        <br/>
+
+        <h:commandButton id = "submit"
+                         value = "Show Message(param)" action = "#{userData.showResult}">
+            <f:param name = "username" value = "JSF 2.0 User param test" />
+        </h:commandButton>
+    </h:form>
+
+    <h:form>
+        <h:commandButton id = "submit"
+                         actionListener = "#{userData.attributeListener}" action = "result">
+            <f:attribute name = "value" value = "Show Message(attribute)" />
+            <f:attribute name = "username" value = "JSF 2.0 User attribute test" />
+        </h:commandButton>
+    </h:form>
+
+<!--    The h:setPropertyActionListener tag adds an action listener -->
+<!--    to a component that sets a bean property to a given value:-->
+    <h:form>
+        <h:commandButton id = "submit" action = "result" value = "Show Message(setPropertieActionListener)">
+            <f:setPropertyActionListener
+                    target = "#{userData.dataa}" value = "JSF 2.0 User(setPropertieActtionListener)" />
+        </h:commandButton>
+    </h:form>
+
+    <h:form>
+        <h:commandButton action = "home?faces-redirect = true"
+                         value = "Back To Home Page" />
+    </h:form>
+</h:body>
+</html>
